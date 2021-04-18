@@ -10,7 +10,7 @@ let trainIter = 0;
 let maxIterFineTune = 100;
 let faceDescriptors = [];
 let trainedFace;
-let maxDescriptorDistance = 0.6;
+let maxDescriptorDistance = 0.7;
 
 // event listener, to run the training and predicting routine at the "play" event.
 video.addEventListener("play", async () => {
@@ -22,6 +22,7 @@ video.addEventListener("play", async () => {
   setInterval(async () => {
     if (trainIter < maxIterFineTune) {
       trainIter++;
+      console.log("Training step: %s", trainIter);
       // detect the face with the highest score in the image and compute it's landmarks and face descriptor
       const faceDescriptor = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
       // if frame does not contains a face throw error.
@@ -37,7 +38,7 @@ video.addEventListener("play", async () => {
       console.log("Trained completed!")
     } else {
       const detections = await faceapi.detectAllFaces(video).withFaceLandmarks().withFaceDescriptors();
-      
+
       // create FaceMatcher with automatically assigned labels
       // from the detection results for the reference image
       const faceMatcher = new faceapi.FaceMatcher(trainedFace, maxDescriptorDistance);
@@ -45,7 +46,7 @@ video.addEventListener("play", async () => {
       const resizedFaces = faceapi.resizeResults(detections, videoSize);
       faceOverlay.getContext('2d').clearRect(0, 0, faceOverlay.width, faceOverlay.height);
       faceapi.draw.drawDetections(faceOverlay, resizedFaces);
-      faceapi.draw.drawFaceLandmarks(faceOverlay, resizedFaces);
+      //faceapi.draw.drawFaceLandmarks(faceOverlay, resizedFaces);
       //faceapi.draw.drawFaceDescriptors(faceOverlay, resizedFaces);
 
       results.forEach((bestMatch, i) => {
