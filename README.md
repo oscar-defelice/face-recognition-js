@@ -1,7 +1,7 @@
 # Face Recognition
 This repository contains the code to implement a smart webcam in JavaScript with a pre-trained Machine Learning model fine-tuned to recognise faces.
 
-## [Click me for Live Demos!](https://oscar-defelice.github.io/face-recognition)
+## [Click me for Live Demos!](https://oscar-defelice.github.io/face-recognition-js)
 
 ## Introduction
 
@@ -14,5 +14,5 @@ We fine-tune the model by a training routine.
 
 ### Usage
 
-Simply open the [webpage](https://oscar-defelice.github.io/face-recognition) and smile!
+Simply open the [webpage](https://oscar-defelice.github.io/face-recognition-js) and smile!
 You can optionally insert the name of the person to recognise.
